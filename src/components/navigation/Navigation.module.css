@@ -1,0 +1,30 @@
+.navWrapper {
+    width: 20%;
+    background: #FCFBFB;
+    /*min-height: 1147px;*/
+}
+
+.navList {
+    padding: 43px 0 0 64px;
+}
+
+.navItem {
+    display: flex;
+    margin-bottom: 24px;
+    gap:12px;
+    text-decoration: none;
+}
+.navItem:active{
+    color: #1A1718;
+}
+.navItem:visited{
+    color: #1A1718;
+}
+.navImg{
+    width: 24px;
+    height: 24px;
+    align-self: center;
+}
+.navItemTitle{
+    align-self: center;
+}

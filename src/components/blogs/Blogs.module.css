@@ -1,0 +1,44 @@
+.blogsWrapper{
+
+    padding: 0 64px 0 24px;
+
+}
+
+.blogsTitle{
+    position: relative;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 30px 0;
+    margin: 0;
+}
+
+.blogsTitle::after {
+    position: absolute;
+    content:'';
+    height: 1px;
+    width: 100%;
+    background: #DEDBDC;
+    bottom: 25px;
+    left: 0;
+}
+
+.blogsFields{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+.blogsList{
+
+    margin-bottom: 48px;
+}
+.button{
+    width: 153px;
+    text-align: center;
+}
+.buttonWrapper{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 43px;
+}

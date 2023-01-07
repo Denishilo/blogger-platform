@@ -1,0 +1,46 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 156px;
+}
+.wrapper::after{
+    position: absolute;
+    content:'';
+    height: 1px;
+    width: 100%;
+    background: #DEDBDC;
+    bottom: -15px;
+    left: 0;
+}
+.imgWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17%;
+    height: 156px;
+    background: #ffffff;
+    border-radius: 100%;
+}
+
+.container {
+    width: 80%;
+}
+
+.img {
+    width: 35px;
+}
+.title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+}
+.linkWrapper{
+    margin-bottom: 24px;
+}
+.description{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
