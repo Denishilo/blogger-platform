@@ -14,6 +14,7 @@ function App() {
                 <Navigation/>
                 <div className='contentWrapper'>
                     <Routes>
+                        <Route path={'/'} element={<Blogs/>}/>
                         <Route path={'blogs'} element={<Blogs/>}/>
                         <Route path={'posts'} element={<Posts/>}/>
                     </Routes>

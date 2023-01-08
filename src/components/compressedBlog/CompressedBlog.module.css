@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     height: 156px;
+    margin-bottom: 25px;
 }
 .wrapper::after{
     position: absolute;
