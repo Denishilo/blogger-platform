@@ -4,7 +4,7 @@ import {Header} from "./components/header/header";
 import {Navigation} from "./components/navigation/navigation";
 import {Blogs} from "./components/blogs/blogs";
 import {Posts} from "./components/posts/posts";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 function App() {
     return (
@@ -14,9 +14,9 @@ function App() {
                 <Navigation/>
                 <div className='contentWrapper'>
                     <Routes>
-                        <Route path={'/'} element={<Blogs/>}/>
-                        <Route path={'blogs'} element={<Blogs/>}/>
-                        <Route path={'posts'} element={<Posts/>}/>
+                        <Route path={'/'} element={<Navigate to={'/blogs'}/>}/>
+                        <Route path={'/blogs'} element={<Blogs/>}/>
+                        <Route path={'/posts'} element={<Posts/>}/>
                     </Routes>
                 </div>
             </section>

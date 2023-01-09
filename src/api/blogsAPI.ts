@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const instance = axios.create({
-    baseURL: 'https://back-samurai.vercel.app',
-    // withCredentials: true,
-    // headers: {
-    //     'Authorization': 'Basic YWRtaW46cXdlcnR5',
-    // }
+    baseURL: 'https://back-samurai.vercel.app/api',
+    withCredentials: true,
+    headers: {
+        'Authorization': 'Basic YWRtaW46cXdlcnR5',
+    }
 })
 
 export const blogsAPI = {
