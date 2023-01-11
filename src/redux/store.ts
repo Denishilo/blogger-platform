@@ -3,9 +3,12 @@ import {blogsReducer} from "../reducers/blogsReducer";
 import { legacy_createStore as createStore} from 'redux'
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {postsReducer} from "../reducers/postsReducer";
+
 
 export const rootReducer = combineReducers({
     blogs: blogsReducer,
+    posts: postsReducer,
 })
 
 export const store = createStore(rootReducer,applyMiddleware(thunkMiddleware))

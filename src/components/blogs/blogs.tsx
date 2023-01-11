@@ -5,7 +5,7 @@ import {CompressedBlog} from "../compressedBlog/compressedBlog";
 import {BasicButton} from "../button/button";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {memo, useEffect, useState} from "react";
-import {getBlogsTC} from "../../reducers/blogsReducer";
+import {deleteBlogsAC, getBlogsTC} from "../../reducers/blogsReducer";
 import {Blog} from "../blog/blog";
 
 export const Blogs = memo(() => {
@@ -16,6 +16,9 @@ export const Blogs = memo(() => {
 
     useEffect(() => {
         dispatch(getBlogsTC())
+        return ()=>{
+            dispatch(deleteBlogsAC())
+        }
     }, [])
 
     return (

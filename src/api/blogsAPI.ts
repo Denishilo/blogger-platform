@@ -10,10 +10,10 @@ export const instance = axios.create({
 
 export const blogsAPI = {
     getBlogs() {
-        return instance.get<BlogsResponseType>('/blogs')
+        return instance.get<ResponseType<BlogType[]>>('/blogs')
     },
     createBlog(newBlog:BlogType){
-        return instance.post<BlogType>('/blogs', newBlog)
+        return instance.post('/blogs', newBlog)
     }
 }
 
@@ -26,12 +26,12 @@ export type BlogType = {
     createdAt: string
 }
 
-export type BlogsResponseType =  {
+export type ResponseType<T> =  {
     pagesCount: number,
     page: number,
     pageSize: number,
     totalCount: number,
-    items: BlogType[],
+    items: T,
 }
 
 export enum ResponseStatus {
