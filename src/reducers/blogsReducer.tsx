@@ -1,15 +1,6 @@
 import {blogsAPI, BlogType, ResponseStatus} from "../api/blogsAPI";
 import {AppThunkDispatch} from "../redux/store";
 
-
-// export type BlogType = {
-//     id: string,
-//     name: string,
-//     description: string,
-//     websiteUrl: string,
-//     createdAt: string
-// }
-
 export const initialState: BlogType[] = []
 export const blogsReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
@@ -39,7 +30,6 @@ export const getBlogsTC = () => async (dispatch: AppThunkDispatch) => {
     try {
         const res = await blogsAPI.getBlogs()
         if (res.status === ResponseStatus.OK) {
-            console.log(res.data)
             dispatch(getBlogsAC(res.data.items))
         } else {
 

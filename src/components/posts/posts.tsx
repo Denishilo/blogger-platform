@@ -5,35 +5,35 @@ import {BasicButton} from "../button/button";
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {deletePostsAC, getPostsTC, PostType} from "../../reducers/postsReducer";
-import {Post} from "./post/post";
 
 export const Posts = () => {
     const dispatch = useAppDispatch()
+
     const posts = useAppSelector<PostType[]>(state => state.posts)
-    console.log(posts)
     useEffect(() => {
         dispatch(getPostsTC())
         return () => {
             dispatch(deletePostsAC())
         }
     }, [])
+
     return (
         <div className={s.postsWrapper}>
-            <h2 className={s.blogsTitle}>Posts</h2>
+            <h2  className={s.blogsTitle}>Posts</h2>
             <div className={s.selectWrapper}>
                 <SelectField/>
             </div>
             <div className={s.postsContainer}>
                 {posts.map(p => {
-                    return <CompressedPost key={p.id} title={p.title} shortDescription={p.shortDescription} createdDate={p.createdAt}/>
+                    return <CompressedPost key={p.id} title={p.title} shortDescription={p.shortDescription}
+                                           createdDate={p.createdAt}/>
                 })
                 }
-
             </div>
             <div className={s.buttonWrapper}>
                 <BasicButton/>
             </div>
-            <Post/>
+            {/*<Post/>*/}
         </div>
     )
 }

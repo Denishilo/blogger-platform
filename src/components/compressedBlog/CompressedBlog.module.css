@@ -22,6 +22,7 @@
     height: 156px;
     background: #ffffff;
     border-radius: 100%;
+    cursor: pointer;
 }
 
 .imgShow{
@@ -40,6 +41,7 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
+    cursor: pointer;
 }
 .linkWrapper{
     margin-bottom: 24px;

@@ -4,45 +4,46 @@ import {SelectSort} from "../selectSort/selectSort";
 import {CompressedBlog} from "../compressedBlog/compressedBlog";
 import {BasicButton} from "../button/button";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {memo, useEffect, useState} from "react";
+import {memo, useEffect} from "react";
 import {deleteBlogsAC, getBlogsTC} from "../../reducers/blogsReducer";
 import {Blog} from "../blog/blog";
+import {BlogType} from "../../api/blogsAPI";
 
 export const Blogs = memo(() => {
-    const blogs = useAppSelector(state => state.blogs)
     const dispatch = useAppDispatch()
-    console.log('blogs')
-    const [isShowBlog, setIsShowBlog] = useState<boolean>(true)
+    const blogs = useAppSelector(state => state.blogs)
+    const isOpenBlog = useAppSelector<boolean>(state => state.app.isBlogOpen)
+    const currentBlog = useAppSelector<BlogType>(state => state.app.currentBlog)
 
     useEffect(() => {
         dispatch(getBlogsTC())
-        return ()=>{
+        return () => {
             dispatch(deleteBlogsAC())
         }
     }, [])
 
+    const blogsList = blogs.map(blog => {
+        return <CompressedBlog key={blog.id} blog={blog}/>
+    })
+
     return (
         <div className={s.blogsWrapper}>
-
-            {isShowBlog? <Blog/> : <div>
-                    <h2 className={s.blogsTitle}>Blogs</h2>
-                    <div className={s.blogsFields}>
-                        <SearchField/>
-                        <SelectSort/>
-                    </div>
-                    <div className={s.blogsList}>
-                        <div className={s.blogItem}>
-                            {blogs.map(blog => {
-                                return <CompressedBlog key={blog.id} blog={blog} isShowBlog={isShowBlog}/>
-                            })}
-                        </div>
+            {isOpenBlog ? <Blog blogObj={currentBlog}/> : <div>
+                <h2 className={s.blogsTitle}>Blogs</h2>
+                <div className={s.blogsFields}>
+                    <SearchField/>
+                    <SelectSort/>
+                </div>
+                <div className={s.blogsList}>
+                    <div className={s.blogItem}>
+                        {blogsList}
                     </div>
                 </div>
-                }
+            </div>
+            }
             <div className={s.buttonWrapper}>
                 <BasicButton/>
             </div>
-
         </div>
     )
 })
