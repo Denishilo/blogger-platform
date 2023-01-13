@@ -15,8 +15,8 @@ export const postsReducer = (state: InitialStateType = initialState, action: All
     }
 
 }
-///// ThunkCreators
 
+///// ThunkCreators
 export const getPostsTC = () => async (dispatch: AppThunkDispatch) => {
     try {
         let res = await postsAPI.getPosts()
@@ -29,7 +29,6 @@ export const getPostsTC = () => async (dispatch: AppThunkDispatch) => {
     }
 
 }
-
 
 ///// Actions Creators
 export const getPostsAC = (posts: PostType[]) => {
@@ -61,9 +60,15 @@ export type PostType = {
 
 type ExtendedLikesInfoType = {
     likesCount: number,
+    dislikesCount:number,
     myStatus:string,
-    newestLikes: number[],
+    newestLikes: NewestLikes[],
+}
 
+type NewestLikes = {
+    addedAt: string,
+    userId: string,
+    login: string,
 }
 export type InitialStateType = PostType[]
 

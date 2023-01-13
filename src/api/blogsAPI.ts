@@ -3,9 +3,9 @@ import axios from "axios";
 export const instance = axios.create({
     baseURL: 'https://back-samurai.vercel.app/api',
     withCredentials: true,
-    // headers: {
-    //     'Authorization': 'Basic YWRtaW46cXdlcnR5',
-    // }
+    headers: {
+        'Authorization': 'Basic YWRtaW46cXdlcnR5',
+    }
 })
 
 export const blogsAPI = {
@@ -17,7 +17,7 @@ export const blogsAPI = {
     }
 }
 
-
+//// types
 export type BlogType = {
     id: string,
     name: string,

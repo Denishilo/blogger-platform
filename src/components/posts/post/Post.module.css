@@ -1,4 +1,8 @@
-.titleWrapper{
+.postWrapper {
+    padding-top: 29px;
+}
+
+.titleWrapper {
     display: flex;
     align-items: center;
     font-style: normal;
@@ -9,7 +13,7 @@
     margin-bottom: 43px;
 }
 
-.title{
+.title {
     position: relative;
     font-style: normal;
     font-weight: 500;
@@ -19,7 +23,7 @@
 
 .title::after {
     position: absolute;
-    content:'';
+    content: '';
     height: 2px;
     width: 100%;
     background: #DEDBDC;
@@ -27,22 +31,23 @@
     left: 0;
 }
 
-.imgNavBlock{
+.imgNavBlock {
     margin-right: 12px;
 }
 
-.navBlock{
+.navBlock {
     margin-bottom: 36px;
+    cursor: pointer;
 }
 
-.postTitle{
+.postTitle {
     font-weight: 600;
     font-size: 22px;
     line-height: 24px;
     margin-bottom: 8px;
 }
 
-.date{
+.date {
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -50,7 +55,7 @@
     margin-bottom: 20px;
 }
 
-.postPicture{
+.postPicture {
     width: 940px;
     height: 432px;
     background: #ffffff;
@@ -60,14 +65,36 @@
     margin-bottom: 30px;
 }
 
-.imgPost{
+.imgPost {
     width: 84px;
     height: 84px;
 }
 
-.postText{
+.postText {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     margin-bottom: 103px;
+}
+
+.blogInfo {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.blogInfoImgWrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 100%;
+}
+
+.blogInfoImg {
+    width: 22px;
+    height: 18px;
 }

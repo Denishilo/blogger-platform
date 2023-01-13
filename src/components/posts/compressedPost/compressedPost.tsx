@@ -1,14 +1,23 @@
 import s from './CompressedPost.module.css'
 import mainImg from '../../../img/mainImgPost.svg'
+import {useAppDispatch} from "../../../redux/store";
+import {setCurrentPostAC, togglePostAC} from "../../../reducers/appReducer";
+import {PostType} from "../../../reducers/postsReducer";
 
 
 export const CompressedPost = (props: CompressedPostPropsType) => {
-    const {title, shortDescription, createdDate} = props
-    const formatCreatedDate = new Date(createdDate).toLocaleDateString('ru')
+    const dispatch = useAppDispatch()
+    const {title, createdAt, blogName} = props.post
+    const {post} = props
+    const formatCreatedDate = new Date(createdAt).toLocaleDateString('ru')
 
+    const openPost = () => {
+        dispatch(togglePostAC())
+        dispatch(setCurrentPostAC(post))
+    }
     return (
         <div className={s.wrapper}>
-            <div className={s.imgContainer}>
+            <div onClick={openPost} className={s.imgContainer}>
                 <img className={s.mainImg} src={mainImg} alt="avatar"/>
             </div>
             <div className={s.infoContainer}>
@@ -16,8 +25,8 @@ export const CompressedPost = (props: CompressedPostPropsType) => {
                     <img className={s.img} src={mainImg} alt="avatar"/>
                 </div>
                 <div className={s.content}>
-                    <h3 className={s.title}>{title}</h3>
-                    <p className={s.description}>{shortDescription}</p>
+                    <h3 onClick={openPost} className={s.title}>{title}</h3>
+                    <p className={s.description}>{blogName}</p>
                     <p className={s.date}>{formatCreatedDate}</p>
                 </div>
             </div>
@@ -28,7 +37,5 @@ export const CompressedPost = (props: CompressedPostPropsType) => {
 ////// types
 
 export type CompressedPostPropsType = {
-    title: string,
-    shortDescription: string,
-    createdDate: string,
+    post: PostType
 }

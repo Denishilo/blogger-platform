@@ -4,7 +4,7 @@ import arrowBack from '../../img/arrowBack.svg'
 import bigAva from '../../img/photoBigAvatar.svg'
 import {memo} from "react";
 import {useAppDispatch} from "../../redux/store";
-import {clearCurrentBlogAC, setCurrentBlogAC, toggleBlogAC} from "../../reducers/appReducer";
+import {clearCurrentBlogAC,toggleBlogAC} from "../../reducers/appReducer";
 import {BlogType} from "../../api/blogsAPI";
 import {NavLink} from "react-router-dom";
 import imgBlogs from "../../img/imgBlogs.svg";

@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom";
 
 export const CompressedBlog = memo((props: CompressedBlogPropsType) => {
     const dispatch = useAppDispatch()
-    const{blog}=props
+    const {blog} = props
     const {name, description, createdAt, websiteUrl, id} = props.blog
 
     const openBlog = () => {
@@ -19,7 +19,7 @@ export const CompressedBlog = memo((props: CompressedBlogPropsType) => {
     return (
         <div className={s.wrapper}>
             <div onClick={openBlog} className={s.imgWrapper}>
-                <img  className={s.img} src={imgBlogs} alt="picture"/>
+                <img className={s.img} src={imgBlogs} alt="picture"/>
             </div>
             <div className={s.container}>
                 <h3 onClick={openBlog} className={s.title}>{name}</h3>

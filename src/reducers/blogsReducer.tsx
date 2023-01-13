@@ -21,31 +21,24 @@ export const getBlogsAC = (blogs: BlogType[]) => {
         }
     } as const
 }
-
 export const deleteBlogsAC = () => ({type: BlogsActions.DeleteBlogs} as const)
 
 ///ThunkCreators
-
 export const getBlogsTC = () => async (dispatch: AppThunkDispatch) => {
     try {
         const res = await blogsAPI.getBlogs()
         if (res.status === ResponseStatus.OK) {
             dispatch(getBlogsAC(res.data.items))
         } else {
-
         }
-
     } catch (e) {
-
     }
-
 }
-
 
 /// types
 export type ActionTypes = GetBlogsType | DeleteBlogsType
-export type GetBlogsType = ReturnType<typeof getBlogsAC>
-export type DeleteBlogsType = ReturnType<typeof deleteBlogsAC>
+type GetBlogsType = ReturnType<typeof getBlogsAC>
+type DeleteBlogsType = ReturnType<typeof deleteBlogsAC>
 
 export enum BlogsActions {
     GetBlogs = 'GET-BLOGS',
