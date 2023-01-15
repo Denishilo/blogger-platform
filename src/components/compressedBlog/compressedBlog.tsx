@@ -2,18 +2,18 @@ import s from './CompressedBlog.module.css'
 import imgBlogs from '../../img/imgBlogs.svg'
 import {memo} from "react";
 import {BlogType} from "../../api/blogsAPI";
-import {setCurrentBlogAC, toggleBlogAC} from "../../reducers/appReducer";
+import {setCurrentBlogIdAC} from "../../reducers/appReducer";
 import {useAppDispatch} from "../../redux/store";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 export const CompressedBlog = memo((props: CompressedBlogPropsType) => {
     const dispatch = useAppDispatch()
-    const {blog} = props
-    const {name, description, createdAt, websiteUrl, id} = props.blog
+    const {name, description, websiteUrl, id} = props.blog
+    const navigate = useNavigate()
 
     const openBlog = () => {
-        dispatch(toggleBlogAC())
-        dispatch(setCurrentBlogAC(blog))
+        dispatch(setCurrentBlogIdAC(id))
+        navigate(`/blog/${id}`)
     }
 
     return (

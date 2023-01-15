@@ -2,19 +2,32 @@ import s from './Post.module.css'
 import arrowRight from '../../../img/arrow_right.svg'
 import arrowBack from '../../../img/arrowBack.svg'
 import imgPost from '../../../img/photoBigAvatar.svg'
-import {PostType} from "../../../reducers/postsReducer";
 import imgBlog from '../../../img/imgBlogs.svg'
-import {useAppDispatch} from "../../../redux/store";
-import {clearCurrentPostAC, togglePostAC} from "../../../reducers/appReducer";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {clearCurrentPostAC, openPostTC, setCurrentPostIdAC} from "../../../reducers/appReducer";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
-export const Post = (props: PostPropsType) => {
+export const Post = () => {
+
+    useEffect(() => {
+        dispatch(openPostTC(currentPostId))
+    }, [])
+
+    const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const {title, createdAt, content, blogName} = props.currentPost
+    const currentPostId = useAppSelector<string>(state => state.app.currentPostId)
+    const blogName = useAppSelector<string>(state => state.app.currentPost.blogName)
+    const createdAt = useAppSelector<string>(state => state.app.currentPost.createdAt)
+    const content = useAppSelector<string>(state => state.app.currentPost.content)
+    const title = useAppSelector<string>(state => state.app.currentPost.title)
     const createdDate = new Date(createdAt).toLocaleDateString('ru')
     const createdTime = new Date(createdAt).toLocaleTimeString()
+
     const backToPosts = () => {
-        dispatch(togglePostAC())
         dispatch(clearCurrentPostAC())
+        dispatch(setCurrentPostIdAC(''))
+        navigate('/posts')
     }
 
     return (
@@ -46,8 +59,3 @@ export const Post = (props: PostPropsType) => {
     )
 }
 
-//// types
-
-export type PostPropsType = {
-    currentPost: PostType
-}

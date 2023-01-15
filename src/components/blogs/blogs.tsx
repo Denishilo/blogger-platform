@@ -6,14 +6,10 @@ import {BasicButton} from "../button/button";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {memo, useEffect} from "react";
 import {deleteBlogsAC, getBlogsTC} from "../../reducers/blogsReducer";
-import {Blog} from "../blog/blog";
-import {BlogType} from "../../api/blogsAPI";
 
 export const Blogs = memo(() => {
     const dispatch = useAppDispatch()
     const blogs = useAppSelector(state => state.blogs)
-    const isOpenBlog = useAppSelector<boolean>(state => state.app.isBlogOpen)
-    const currentBlog = useAppSelector<BlogType>(state => state.app.currentBlog)
 
     useEffect(() => {
         dispatch(getBlogsTC())
@@ -28,7 +24,7 @@ export const Blogs = memo(() => {
 
     return (
         <div className={s.blogsWrapper}>
-            {isOpenBlog ? <Blog blogObj={currentBlog}/> : <div>
+            <div>
                 <h2 className={s.blogsTitle}>Blogs</h2>
                 <div className={s.blogsFields}>
                     <SearchField/>
@@ -40,7 +36,6 @@ export const Blogs = memo(() => {
                     </div>
                 </div>
             </div>
-            }
             <div className={s.buttonWrapper}>
                 <BasicButton/>
             </div>

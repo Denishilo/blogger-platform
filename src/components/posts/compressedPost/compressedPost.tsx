@@ -1,20 +1,22 @@
 import s from './CompressedPost.module.css'
 import mainImg from '../../../img/mainImgPost.svg'
 import {useAppDispatch} from "../../../redux/store";
-import {setCurrentPostAC, togglePostAC} from "../../../reducers/appReducer";
+import {setCurrentPostIdAC} from "../../../reducers/appReducer";
 import {PostType} from "../../../reducers/postsReducer";
+import {useNavigate} from "react-router-dom";
 
 
 export const CompressedPost = (props: CompressedPostPropsType) => {
     const dispatch = useAppDispatch()
-    const {title, createdAt, blogName} = props.post
-    const {post} = props
+    const {title, createdAt, blogName, id} = props.post
     const formatCreatedDate = new Date(createdAt).toLocaleDateString('ru')
+    const navigate = useNavigate()
 
     const openPost = () => {
-        dispatch(togglePostAC())
-        dispatch(setCurrentPostAC(post))
+        dispatch(setCurrentPostIdAC(id))
+        navigate(`post/${id}`)
     }
+
     return (
         <div className={s.wrapper}>
             <div onClick={openPost} className={s.imgContainer}>

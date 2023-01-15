@@ -2,21 +2,30 @@ import s from './Blog.module.css'
 import arrowRight from '../../img/arrow_right.svg'
 import arrowBack from '../../img/arrowBack.svg'
 import bigAva from '../../img/photoBigAvatar.svg'
-import {memo} from "react";
-import {useAppDispatch} from "../../redux/store";
-import {clearCurrentBlogAC,toggleBlogAC} from "../../reducers/appReducer";
-import {BlogType} from "../../api/blogsAPI";
-import {NavLink} from "react-router-dom";
+import {memo, useEffect} from "react";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {clearCurrentBlogAC, openBlogTC, setCurrentBlogIdAC} from "../../reducers/appReducer";
+import {NavLink, useNavigate} from "react-router-dom";
 import imgBlogs from "../../img/imgBlogs.svg";
 
-export const Blog = memo((props: BlogPropsType) => {
+export const Blog = memo(() => {
     const dispatch = useAppDispatch()
-    const {name, websiteUrl, description, createdAt} = props.blogObj
+    const blogId = useAppSelector<string>(state => state.app.currentBlogId)
+    const nameBlog = useAppSelector<string>(state => state.app.currentBlog.name)
+    const description = useAppSelector<string>(state => state.app.currentBlog.description)
+    const createdAt = useAppSelector<string>(state => state.app.currentBlog.createdAt)
+    const websiteUrl = useAppSelector<string>(state => state.app.currentBlog.websiteUrl)
     const date = new Date(createdAt).toLocaleDateString('ru')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        dispatch(openBlogTC(blogId))
+    }, [])
 
     const goBackToBlogs = () => {
-        dispatch(toggleBlogAC())
+        dispatch(setCurrentBlogIdAC(''))
         dispatch(clearCurrentBlogAC())
+        navigate('/blogs')
     }
 
     return (
@@ -24,7 +33,7 @@ export const Blog = memo((props: BlogPropsType) => {
             <div className={s.titleWrapper}>
                 <h3 className={s.title}>Blogs</h3>
                 <img src={arrowRight} alt="arrow"/>
-                <p>{name}</p>
+                <p>{nameBlog}</p>
             </div>
             <div onClick={goBackToBlogs} className={s.navigateBack}>
                 <img src={arrowBack} alt="back"/>
@@ -39,7 +48,7 @@ export const Blog = memo((props: BlogPropsType) => {
                         <img className={s.img} src={imgBlogs} alt="picture"/>
                     </div>
                     <div>
-                        <h3 className={s.title}>{name}</h3>
+                        <h3 className={s.title}>{nameBlog}</h3>
                         <p className={s.createDate}>Blog creation date: {date}</p>
                         <p className={s.linkWrapper}>
                             Website: <NavLink to={websiteUrl}>{websiteUrl}</NavLink>
@@ -54,7 +63,3 @@ export const Blog = memo((props: BlogPropsType) => {
         </div>
     )
 })
-
-export type BlogPropsType = {
-    blogObj: BlogType
-}

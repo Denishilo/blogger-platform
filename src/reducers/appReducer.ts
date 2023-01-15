@@ -1,11 +1,13 @@
-import {BlogType} from "../api/blogsAPI";
+import {blogsAPI, BlogType} from "../api/blogsAPI";
 import {PostType} from "./postsReducer";
+import {AppThunkDispatch} from "../redux/store";
+import {postsAPI} from "../api/postsAPI";
 
 const initialState = {
-    isPageBlogsActive: true,
-    isBlogOpen: false,
-    isPostOpen: false,
+    isShowBlogs: true,
+    isShowPosts: false,
     currentBlogId: '',
+    currentPostId: '',
     currentBlog: {
         id: '',
         name: '',
@@ -36,16 +38,14 @@ const initialState = {
 }
 export const appReducer = (state: InitialType = initialState, action: AllAppActionType): InitialType => {
     switch (action.type) {
-        case AppActions.ToggleMainPage:
-            return {...state, isPageBlogsActive: !state.isPageBlogsActive}
-        case AppActions.ToggleBlog:
-            return {...state, isBlogOpen: !state.isBlogOpen}
+        case AppActions.GoBlogsPage:
+            return {...state, isShowBlogs: action.payload.value}
+        case AppActions.GoPostsPage:
+            return {...state, isShowPosts: action.payload.value}
         case AppActions.SetCurrentBlog:
             return {...state, currentBlog: action.payload.currentBlog}
         case AppActions.ClearCurrentBlog:
             return {...state, currentBlog: action.payload}
-        case AppActions.TogglePost:
-            return {...state, isPostOpen: !state.isPostOpen}
         case AppActions.SetCurrentPost:
             return {...state, currentPost: action.payload.currentPost}
         case AppActions.ClearCurrentPost:
@@ -59,22 +59,57 @@ export const appReducer = (state: InitialType = initialState, action: AllAppActi
                     }
                 },
             }
+        case AppActions.SetCurrentBlogId:
+            return {...state, currentBlogId: action.payload.currentId}
+        case AppActions.SetCurrentPostId:
+            return {...state, currentPostId: action.payload.currentId}
         default:
             return state
     }
 }
+////Thunk CREATORS
+export const openBlogTC = (id: string) => async (dispatch: AppThunkDispatch) => {
+    console.log('open blog')
+    try {
+        let res = await blogsAPI.getBlogById(id)
+        dispatch(setCurrentBlogAC(res.data))
+        //dispatch(setCurrentBlogIdAC(res.data.id))
+    } catch (e) {
+
+    }
+}
+export const openPostTC = (id: string) => async (dispatch: AppThunkDispatch) => {
+    console.log('openTC id', id)
+    try {
+        let res = await postsAPI.getPostById(id)
+        console.log(res)
+        dispatch(setCurrentPostAC(res.data))
+    } catch (e) {
+
+    }
+
+}
 
 ////ACTION CREATORS
 /// App
-export const toggleMainPageAC = () => ({type: AppActions.ToggleMainPage} as const)
+export const goBlogsPageAC = (value:boolean) => ({type: AppActions.GoBlogsPage, payload:{value}} as const)
+export const goPostsPageAC = (value:boolean) => ({type: AppActions.GoPostsPage,payload:{value}} as const)
 
 ///Blogs
-export const toggleBlogAC = () => ({type: AppActions.ToggleBlog} as const)
+
 export const setCurrentBlogAC = (currentBlog: BlogType) => {
     return {
         type: AppActions.SetCurrentBlog,
         payload: {
             currentBlog
+        }
+    } as const
+}
+export const setCurrentBlogIdAC = (currentId: string) => {
+    return {
+        type: AppActions.SetCurrentBlogId,
+        payload: {
+            currentId
         }
     } as const
 }
@@ -92,11 +127,19 @@ export const clearCurrentBlogAC = () => {
 }
 
 ///Posts
-export const togglePostAC = () => ({type: AppActions.TogglePost} as const)
+
 export const setCurrentPostAC = (currentPost: PostType) => {
     return {
         type: AppActions.SetCurrentPost,
         payload: {currentPost}
+    } as const
+}
+export const setCurrentPostIdAC = (currentId: string) => {
+    return {
+        type: AppActions.SetCurrentPostId,
+        payload: {
+            currentId
+        }
     } as const
 }
 export const clearCurrentPostAC = () => {
@@ -127,38 +170,42 @@ export const clearCurrentPostAC = () => {
 
 //// types
 export type InitialType = {
-    isPageBlogsActive: boolean,
-    isBlogOpen: boolean,
-    isPostOpen: boolean,
-    currentBlogId: string
+    isShowBlogs: boolean,
+    isShowPosts: boolean,
+    currentBlogId: string,
+    currentPostId: string,
     currentBlog: BlogType,
     currentPost: PostType,
 }
 
 export enum AppActions {
-    ToggleMainPage = 'TOGGLE-MAIN-PAGE',
-    ToggleBlog = 'TOGGLE-BLOCK',
-    SetCurrentBlog = 'SET-CURRENT-BLOG-ID',
+    GoBlogsPage = 'GO-BLOGS-PAGE',
+    GoPostsPage = 'GO-POSTS-PAGE',
+    SetCurrentBlog = 'SET-CURRENT-BLOG',
+    SetCurrentBlogId = 'SET-CURRENT-BLOG-ID',
     ClearCurrentBlog = 'CLEAR-CURRENT-BLOG',
-    TogglePost = 'TOGGLE-POST',
     SetCurrentPost = 'SET-CURRENT-POST',
-    ClearCurrentPost = 'CLEAR-CURRENT-POST'
+    ClearCurrentPost = 'CLEAR-CURRENT-POST',
+    SetCurrentPostId = 'SET-CURRENT-POST-ID',
 }
 
 export type AllAppActionType =
-    ToggleMainPageACType
-    | ToggleBlogACType
+    GoBlogsPageACType
+    | GoPostsPageACType
     | SetCurrentBlogACType
     | ClearCurrentBlogACType
-    | TogglePostACType
     | SetCurrentPostACType
     | ClearCurrentPostACType
+    | SetCurrentBlogIdACType
+    | SetCurrentPostIdACType
 
-type ToggleMainPageACType = ReturnType<typeof toggleMainPageAC>
-type ToggleBlogACType = ReturnType<typeof toggleBlogAC>
+type GoBlogsPageACType = ReturnType<typeof goBlogsPageAC>
+type GoPostsPageACType = ReturnType<typeof goPostsPageAC>
 type SetCurrentBlogACType = ReturnType<typeof setCurrentBlogAC>
+type SetCurrentBlogIdACType = ReturnType<typeof setCurrentBlogIdAC>
 type ClearCurrentBlogACType = ReturnType<typeof clearCurrentBlogAC>
-type TogglePostACType = ReturnType<typeof togglePostAC>
 type SetCurrentPostACType = ReturnType<typeof setCurrentPostAC>
+type SetCurrentPostIdACType = ReturnType<typeof setCurrentPostIdAC>
 type ClearCurrentPostACType = ReturnType<typeof clearCurrentPostAC>
+
 

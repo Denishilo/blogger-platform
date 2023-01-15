@@ -12,6 +12,9 @@ export const blogsAPI = {
     getBlogs() {
         return instance.get<ResponseType<BlogType[]>>('/blogs')
     },
+    getBlogById(id: string) {
+        return instance.get<BlogType>(`/blogs/${id}`)
+    },
     createBlog(newBlog: BlogType) {
         return instance.post('/blogs', newBlog)
     }
