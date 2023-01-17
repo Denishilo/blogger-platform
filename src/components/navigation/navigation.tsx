@@ -11,8 +11,7 @@ export const Navigation = () => {
     const dispatch = useAppDispatch()
     const isShowBlogs = useAppSelector<boolean>(state => state.app.isShowBlogs)
     const isShowPosts = useAppSelector<boolean>(state => state.app.isShowPosts)
-    console.log('isShowBlogs', isShowBlogs)
-    console.log('isShowPosts', isShowPosts)
+
     const goBlogsPage = () => {
         if (!isShowBlogs) {
             dispatch(goBlogsPageAC(true))

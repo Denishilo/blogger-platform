@@ -14,7 +14,7 @@ export const CompressedPost = (props: CompressedPostPropsType) => {
 
     const openPost = () => {
         dispatch(setCurrentPostIdAC(id))
-        navigate(`post/${id}`)
+        navigate(`/post/${id}`)
     }
 
     return (

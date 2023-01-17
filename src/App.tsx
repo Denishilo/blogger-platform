@@ -22,7 +22,7 @@ function App() {
                         <Route path={'/'} element={<Navigate to={'/blogs'}/>}/>
                         <Route path={'/blogs'} element={isPageBlogsActive ? <Blogs/> : <Navigate to={'/posts'}/>}/>
                         <Route path={`/blog/:id`} element={<Blog/>}/>
-                        <Route path={`posts/post/:id`} element={<Post/>}/>
+                        <Route path={`/post/:id`} element={<Post/>}/>
                         <Route path={'/posts'} element={<Posts/>}/>
                     </Routes>
                 </div>
