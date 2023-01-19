@@ -12,7 +12,7 @@ export const blogsReducer = (state = initialState, action: ActionTypes) => {
             return state
     }
 }
-/// ActionsCreators
+/////////////////////////////// ACTIONS CREATORS /////////////////////////////////
 export const getBlogsAC = (blogs: BlogType[]) => {
     return {
         type: BlogsActions.GetBlogs,
@@ -23,7 +23,7 @@ export const getBlogsAC = (blogs: BlogType[]) => {
 }
 export const deleteBlogsAC = () => ({type: BlogsActions.DeleteBlogs} as const)
 
-///ThunkCreators
+/////////////////////////////// Thunk CREATORS /////////////////////////////////
 export const getBlogsTC = () => async (dispatch: AppThunkDispatch) => {
     try {
         const res = await blogsAPI.getBlogs()
@@ -35,7 +35,7 @@ export const getBlogsTC = () => async (dispatch: AppThunkDispatch) => {
     }
 }
 
-/// types
+///////////////////////////// types ///////////////////////////////////////////
 export type ActionTypes = GetBlogsType | DeleteBlogsType
 type GetBlogsType = ReturnType<typeof getBlogsAC>
 type DeleteBlogsType = ReturnType<typeof deleteBlogsAC>

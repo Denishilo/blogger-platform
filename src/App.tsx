@@ -11,7 +11,6 @@ import {Post} from "./components/posts/post/post";
 
 function App() {
     const isPageBlogsActive = useAppSelector<boolean>(state => state.app.isShowBlogs)
-
     return (
         <>
             <Header/>

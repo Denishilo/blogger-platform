@@ -5,7 +5,7 @@ import s from './Button.module.css'
 
 export const BasicButton = () =>{
     return (
-        <div >
+        <div className={s.buttonWrapper}>
             <Stack direction="row" spacing={2}>
                 <Button className={s.button} variant="outlined" endIcon={<ExpandMoreIcon/>} color={'inherit'}>
                     Show more

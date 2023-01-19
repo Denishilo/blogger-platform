@@ -1,3 +1,7 @@
+.wrapper{
+    width: 256px;
+}
+
 .selectFilterWrapper{
     width: 250px;
     height: 36px;
@@ -5,4 +9,12 @@
 
 .select{
     padding: 0;
+}
+
+.formControl{
+    height: 36px;
+}
+
+.text{
+    height: 36px;
 }

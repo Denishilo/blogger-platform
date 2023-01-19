@@ -1,5 +1,9 @@
-.imgContainer{
+.wrapper {
     width: 300px;
+    height: 268px;
+}
+
+.imgContainer{
     height: 180px;
     display: flex;
     align-items: center;
@@ -16,7 +20,6 @@
 
 .infoContainer{
     display: flex;
-
 }
 
 .imgDescription{
@@ -44,7 +47,6 @@
 .postsContainer{
     display: flex;
 }
-
 
 .title{
     cursor: pointer;

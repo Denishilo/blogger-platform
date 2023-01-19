@@ -1,24 +1,42 @@
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import s from './SelectSort.module.css'
 
+const values = [
+    {
+        value: '1',
+        label: 'Old blogs first',
+    },
+    {
+        value: '2',
+        label: 'From A to Z',
+    },
+    {
+        value: '3',
+        label: 'From Z to A',
+    },
+
+];
 
 export const SelectSort = () => {
     return (
-        <div className={s.selectFilterWrapper}>
-                <FormControl fullWidth size="small">
-                    <Select className={s.select}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={''}
-                        onChange={()=>{}}
+            <Box width='256px'  component="form">
+                <div>
+                    <TextField className={s.text}
+                               id="outlined-select-currency"
+                               select
+                               defaultValue="1"
+                               fullWidth
+                               sx = {{width:'256px', height:'36px'}}
                     >
-                        <MenuItem value={10}>Old blogs first</MenuItem>
-                        <MenuItem value={20}>From A to Z</MenuItem>
-                        <MenuItem value={30}>From Z to A</MenuItem>
-                    </Select>
-                </FormControl>
-        </div>
+                        {values.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </div>
+            </Box>
     )
 }

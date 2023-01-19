@@ -67,7 +67,8 @@ export const appReducer = (state: InitialType = initialState, action: AllAppActi
             return state
     }
 }
-////Thunk CREATORS
+/////////////////////////////// Thunk CREATORS /////////////////////////////////
+
 export const openBlogTC = (id: string) => async (dispatch: AppThunkDispatch) => {
     console.log('open blog')
     try {
@@ -90,12 +91,12 @@ export const openPostTC = (id: string) => async (dispatch: AppThunkDispatch) => 
 
 }
 
-////ACTION CREATORS
-/// App
+/////////////////////////////// ACTIONS CREATORS /////////////////////////////////
+////////////////////////////// App
 export const goBlogsPageAC = (value:boolean) => ({type: AppActions.GoBlogsPage, payload:{value}} as const)
 export const goPostsPageAC = (value:boolean) => ({type: AppActions.GoPostsPage,payload:{value}} as const)
 
-///Blogs
+////////////////////////////////Blogs
 
 export const setCurrentBlogAC = (currentBlog: BlogType) => {
     return {
@@ -126,7 +127,7 @@ export const clearCurrentBlogAC = () => {
     } as const
 }
 
-///Posts
+//////////////////////////////Posts
 
 export const setCurrentPostAC = (currentPost: PostType) => {
     return {
@@ -168,7 +169,8 @@ export const clearCurrentPostAC = () => {
     } as const
 }
 
-//// types
+/////////////////////////////// types //////////////////////////////
+
 export type InitialType = {
     isShowBlogs: boolean,
     isShowPosts: boolean,

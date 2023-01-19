@@ -1,8 +1,11 @@
-.selectFilterWrapper{
-    width: 250px;
-    height: 36px;
+.wrapper {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 24px;
 }
 
-.select{
+.selectFilterWrapper {
+    width: 250px;
+    height: 36px;
     padding: 0;
 }

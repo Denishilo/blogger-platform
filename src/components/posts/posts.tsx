@@ -5,6 +5,7 @@ import {BasicButton} from "../button/button";
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {deletePostsAC, getPostsTC, PostType} from "../../reducers/postsReducer";
+import {ItemTitle} from "../itemTitle/itemTitle";
 
 export const Posts = () => {
     const dispatch = useAppDispatch()
@@ -22,18 +23,12 @@ export const Posts = () => {
 
     return (
         <div className={s.postsWrapper}>
-            <div>
-                <h2 className={s.blogsTitle}>Posts</h2>
-                <div className={s.selectWrapper}>
-                    <SelectField/>
-                </div>
-                <div className={s.postsContainer}>
-                    {postsList}
-                </div>
-                <div className={s.buttonWrapper}>
-                    <BasicButton/>
-                </div>
+            <ItemTitle name={'Posts'}/>
+            <SelectField/>
+            <div className={s.postsContainer}>
+                {postsList}
             </div>
+            <BasicButton/>
         </div>
     )
 }

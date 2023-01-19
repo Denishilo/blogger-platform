@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    height: 156px;
+    min-height: 156px;
     margin-bottom: 25px;
 }
 .wrapper::after{
@@ -36,18 +36,16 @@
 .img {
     width: 35px;
 }
+
 .title{
-    font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    line-height: 24px;
     cursor: pointer;
 }
+
 .linkWrapper{
     margin-bottom: 24px;
 }
 .description{
-    font-weight: 400;
     font-size: 14px;
-    line-height: 24px;
 }

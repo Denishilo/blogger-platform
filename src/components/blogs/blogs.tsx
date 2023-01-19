@@ -6,6 +6,7 @@ import {BasicButton} from "../button/button";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {memo, useEffect} from "react";
 import {deleteBlogsAC, getBlogsTC} from "../../reducers/blogsReducer";
+import {ItemTitle} from "../itemTitle/itemTitle";
 
 export const Blogs = memo(() => {
     const dispatch = useAppDispatch()
@@ -24,21 +25,15 @@ export const Blogs = memo(() => {
 
     return (
         <div className={s.blogsWrapper}>
-            <div>
-                <h2 className={s.blogsTitle}>Blogs</h2>
-                <div className={s.blogsFields}>
-                    <SearchField/>
-                    <SelectSort/>
-                </div>
-                <div className={s.blogsList}>
-                    <div className={s.blogItem}>
-                        {blogsList}
-                    </div>
-                </div>
+            <ItemTitle name={'Blogs'}/>
+            <div className={s.blogsFields}>
+                <SearchField/>
+                <SelectSort/>
             </div>
-            <div className={s.buttonWrapper}>
-                <BasicButton/>
+            <div className={s.blogsList}>
+                {blogsList}
             </div>
+            <BasicButton/>
         </div>
     )
 })

@@ -16,7 +16,7 @@ export const postsReducer = (state: InitialStateType = initialState, action: All
 
 }
 
-///// ThunkCreators
+/////////////////////////////// Thunk CREATORS /////////////////////////////////
 export const getPostsTC = () => async (dispatch: AppThunkDispatch) => {
     try {
         let res = await postsAPI.getPosts()
@@ -27,10 +27,9 @@ export const getPostsTC = () => async (dispatch: AppThunkDispatch) => {
     } catch (e) {
 
     }
-
 }
 
-///// Actions Creators
+/////////////////////////////// ACTIONS CREATORS /////////////////////////////////
 export const getPostsAC = (posts: PostType[]) => {
     return {
         type: PostActions.GetPosts,
@@ -41,7 +40,7 @@ export const getPostsAC = (posts: PostType[]) => {
 }
 export const deletePostsAC = () => ({type: PostActions.DeletePosts} as const)
 
-////types
+/////////////////////////////// types ////////////////////////////////////////////
 type GetPostsACType = ReturnType<typeof getPostsAC>
 type DeletePostsACType = ReturnType<typeof deletePostsAC>
 export type AllPostsActionsType = GetPostsACType | DeletePostsACType

@@ -1,12 +1,12 @@
 import s from './Post.module.css'
-import arrowRight from '../../../img/arrow_right.svg'
-import arrowBack from '../../../img/arrowBack.svg'
 import imgPost from '../../../img/photoBigAvatar.svg'
 import imgBlog from '../../../img/imgBlogs.svg'
 import {useAppDispatch, useAppSelector} from "../../../redux/store";
 import {clearCurrentPostAC, openPostTC, setCurrentPostIdAC} from "../../../reducers/appReducer";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {ItemTitle} from "../../itemTitle/itemTitle";
+import {GoBackSection} from "../../goBackSection/goBackSection";
 
 export const Post = () => {
 
@@ -32,22 +32,15 @@ export const Post = () => {
 
     return (
         <div className={s.postWrapper}>
-            <div className={s.titleWrapper}>
-                <h3 className={s.title}>Posts</h3>
-                <img src={arrowRight} alt="arrow"/>
-                <span>{blogName}</span>
-            </div>
+            <ItemTitle name={'Posts'} showItem={true} nameBlog={blogName}/>
+            <GoBackSection callback={backToPosts} title={'posts'}/>
             <div className={s.blogInfo}>
                 <div className={s.blogInfoImgWrapper}>
-                    <img className={s.blogInfoImg} src={imgBlog} alt=""/>
+                    <img className={s.blogInfoImg} src={imgBlog} alt="avatar"/>
                 </div>
                 <p>{blogName}</p>
             </div>
-            <div onClick={backToPosts} className={s.navBlock}>
-                <img className={s.imgNavBlock} src={arrowBack} alt="arrowBack"/>
-                <span>Back to posts</span>
-            </div>
-            <div className={s.postContent}>
+            <div>
                 <h2 className={s.postTitle}>{title}</h2>
                 <p className={s.date}>{`${createdDate} at ${createdTime}`}</p>
                 <div className={s.postPicture}>

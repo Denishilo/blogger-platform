@@ -14,19 +14,17 @@ export const blogsAPI = {
     },
     getBlogById(id: string) {
         return instance.get<BlogType>(`/blogs/${id}`)
-    },
-    createBlog(newBlog: BlogType) {
-        return instance.post('/blogs', newBlog)
     }
 }
 
-//// types
+///////////////////////// types  /////////////////////////
+
 export type BlogType = {
     id: string,
     name: string,
     description: string,
     websiteUrl: string,
-    createdAt: string
+    createdAt: string,
 }
 
 export type ResponseType<T> = {
