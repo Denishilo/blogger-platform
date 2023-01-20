@@ -5,7 +5,7 @@
 .blogsFields {
     display: flex;
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
     margin-bottom: 24px;
 }
 
